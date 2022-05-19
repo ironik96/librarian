@@ -1,7 +1,14 @@
-import React from 'react'
+import AddButton from "./AddButton";
+import SearchBar from "./SearchBar";
 
-export const Actions = () => {
+const Actions = () => {
   return (
-    <div>Actions</div>
-  )
-}
+    <div className="actions">
+      <div></div>
+      <SearchBar />
+      <AddButton />
+    </div>
+  );
+};
+
+export default Actions;

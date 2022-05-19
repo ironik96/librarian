@@ -1,8 +1,5 @@
-
 const Navigator = () => {
-  return (
-    <div>Navigator</div>
-  )
-}
+  return <div>Navigator</div>;
+};
 
-export default Navigator
+export default Navigator;
