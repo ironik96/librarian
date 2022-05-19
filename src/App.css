@@ -1,10 +1,57 @@
-.App {
-  text-align: center;
+:root {
+  --background-color: #f9f3ee;
+  --card-background-color: #ffffff;
+  --hint-color: #70757a;
+  --font-size: 12px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  text-align: center;
+  background-color: var(--background-color);
+}
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+.books-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px;
+  gap: 5px;
+  background-color: var(--card-background-color);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  width: 256px;
+}
+
+.book-img {
+  width: 113px;
+}
+
+.book-title {
+  font-family: "Inter";
+  font-weight: 700;
+  line-height: 15px;
+  font-size: var(--font-size);
+}
+.book-author {
+  font-size: var(--font-size);
+  font-family: "Inter";
+  font-weight: 400;
+  line-height: 15px;
+  color: var(--hint-color);
 }
 
 .member-item {
@@ -15,32 +62,4 @@
 }
 
 .member-name {
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
