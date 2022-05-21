@@ -1,27 +1,28 @@
-import { Modal, Button, InputGroup, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const allGenres = [
+  "Action",
   "Fantasy",
+  "Sci-Fi",
+  "Romance",
   "Fiction",
-  "Crime",
-  "Mystery",
+  "Self-Help",
+  "Thriller",
+  "Suspense",
+  "Biography",
   "Business",
   "Entrepreneurship",
-  "Biography",
-  "Suspense",
-  "Sci-Fi",
-  "Thriller",
-  "Self-Help",
-  "Action",
+  "Crime",
+  "Mystery",
 ];
-const Genres = ({ handleChange }) => {
+const Genres = ({ handleGenres }) => {
   const renderAllGenres = allGenres.map((genre) => (
     <Form.Check
       inline
       label={genre}
       name="genres"
       type="checkbox"
-      onChange={handleChange}
+      onChange={handleGenres}
       key={genre}
       id={genre}
     />

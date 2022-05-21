@@ -4,32 +4,34 @@ import booksStore from "../stores/booksStore";
 import Genres from "./Genres.js";
 
 function AddBookModal(props) {
-  const [book, setBook] = useState({
+  const emptyBook = {
     author: "",
     title: "",
     genres: [],
     available: false,
     image: "",
-  });
-
-  //array of genres, render as checkboxes, user selects from them, OR give user multiple fields to add genres as text
-  //available: checkbox. or options
+  };
+  const [book, setBook] = useState(emptyBook);
 
   const handleChange = (event) => {
-    if (event.target.name === "available") {
-      console.log(event.target.value);
-      setBook({ ...book, [event.target.name]: event.target.value === "on" });
-    } else {
-      console.log("else part", event.target.id);
-      setBook({ ...book, [event.target.name]: event.target.value });
-    }
+    event.target.name === "available"
+      ? setBook({ ...book, [event.target.name]: event.target.value === "on" })
+      : setBook({ ...book, [event.target.name]: event.target.value });
+  };
+
+  const handleGenres = (event) => {
+    const genres = book.genres;
+    const genre = event.target.id;
+    event.target.checked
+      ? setBook({ ...book, ["genres"]: [...genres, genre] })
+      : setBook({ ...book, ["genres"]: genres.filter((g) => g != genre) });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(book);
-    //booksStore.addBook(book);
+    booksStore.addBook(book);
     props.closeModal();
+    setBook(emptyBook);
   };
 
   return (
@@ -51,13 +53,9 @@ function AddBookModal(props) {
           </InputGroup>
           <br />
 
-          {/* <InputGroup>
-           
-            <Form.Control name="genres" onChange={handleChange} /> */}
           <InputGroup.Text>Book genre</InputGroup.Text>
-          <Genres handleChange={handleChange} />
+          <Genres handleGenres={handleGenres} />
           <br />
-          {/* </InputGroup> */}
           <br />
 
           <InputGroup>
