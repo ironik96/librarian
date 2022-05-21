@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 const Actions = () => {
   return (
     <div className="actions">
-      <div></div>
+      <div className="my-logo">Readable windows</div>
       <SearchBar />
       <AddButton />
     </div>

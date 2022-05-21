@@ -12,16 +12,9 @@ function App() {
         <div className="container">
           <Navigator />
           <div className="main-page">
+            <Actions />
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <Actions />
-                    <BooksList />
-                  </>
-                }
-              />
+              <Route path="/" element={<BooksList />} />
               <Route path="/members" element={<MembersPage />} />
             </Routes>
           </div>

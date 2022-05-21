@@ -7,7 +7,11 @@ const BooksList = () => {
     .slice(0, 8)
     .map((book) => <BookItem book={book} key={book._id} />);
 
-  return <div className="books-content">{books}</div>;
+  return (
+    <div className="books-content">
+      {books.length === 0 ? "no book" : books}
+    </div>
+  );
 };
 
 export default observer(BooksList);
