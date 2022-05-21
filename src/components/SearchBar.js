@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
+import booksStore from "../stores/booksStore";
 
 const SearchBar = () => {
-  return (
-    <div>SearchBar</div>
-  )
-}
+  const books = booksStore;
+  const handleChange = (event) => books.filterBooks(event.target.value);
 
-export default SearchBar
+  return (
+    <input
+      type="text"
+      className="search-input"
+      placeholder="🔎	Search Books"
+      onChange={handleChange}
+    />
+  );
+};
+
+export default SearchBar;

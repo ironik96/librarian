@@ -12,7 +12,7 @@ const AddButton = () => {
         className="add-button-img"
         onClick={openModal}
         src="/icons/plus.png"
-        alt=""
+        alt="add"
       />
       <AddBookModal isOpen={isOpen} closeModal={closeModal} />
     </button>

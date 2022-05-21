@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import BookItem from "./BookItem";
 
 const BooksList = () => {
-  const books = booksStore.books
+  const books = booksStore.filteredBooks
     .slice(0, 8)
     .map((book) => <BookItem book={book} key={book._id} />);
 

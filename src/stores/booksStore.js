@@ -10,12 +10,14 @@ class BooksStore {
   }
 
   books = [];
+  filteredBooks = [];
 
   fetchBooks = async () => {
     try {
       const response = await axios.get(URL);
       runInAction(() => {
         this.books = response.data;
+        this.filteredBooks = Array.from(response.data);
       });
     } catch (error) {
       console.error(error);
@@ -23,13 +25,23 @@ class BooksStore {
   };
 
   addBook = async (book) => {
-    //generate id here somehow
     this.books.push(book);
     try {
       await axios.post(URL, book);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  filterBooks = (query) => {
+    this.filteredBooks = this.books.filter((book) => {
+      return (
+        book.title.toLowerCase().includes(query.toLowerCase()) ||
+        book.genres.some((genre) =>
+          genre.toLowerCase().includes(query.toLowerCase())
+        )
+      );
+    });
   };
 }
 const booksStore = new BooksStore();

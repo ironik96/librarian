@@ -29,6 +29,24 @@
   justify-content: space-between;
 }
 
+.search-input {
+  width: 500px;
+  height: 40px;
+  font-size: 16px;
+  padding: 0px 10px;
+  border-radius: 20px;
+  border: none;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: var(--box-shadow);
+}
+.search-input::placeholder {
+  font-size: 16px;
+  text-align: center;
+}
+
 .add-button {
   border: none;
   border-radius: 100%;
