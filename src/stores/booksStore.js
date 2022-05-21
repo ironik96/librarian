@@ -21,6 +21,16 @@ class BooksStore {
       console.error(error);
     }
   };
+
+  addBook = async (book) => {
+    //generate id here somehow
+    this.books.push(book);
+    try {
+      await axios.post(URL, book);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
 const booksStore = new BooksStore();
 export default booksStore;

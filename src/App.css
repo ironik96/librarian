@@ -1,6 +1,7 @@
 :root {
   --background-color: #f9f3ee;
   --card-background-color: #ffffff;
+  --buttons-backgound-color: #F2D0A4;
   --hint-color: #70757a;
   --font-size: 12px;
 }
@@ -17,6 +18,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
 }
+
 .container {
   display: flex;
   gap: 50px;
@@ -25,18 +27,32 @@
   display: flex;
   justify-content: space-between;
 }
+
+.add-button{
+  border: none;
+  border-radius: 100%;
+  background-color: var(--buttons-backgound-color);
+  padding: 1%;
+  display: inline-flex;
+}
+.add-button-img{
+  padding: 3%;
+  height: 20px;
+  width: 20px;
+}
+
 .main-page {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
+
 .books-content {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 20px;
   row-gap: 20px;
 }
-
 .book-card {
   display: flex;
   flex-direction: column;
@@ -48,11 +64,9 @@
   border-radius: 30px;
   width: 256px;
 }
-
 .book-img {
   width: 113px;
 }
-
 .book-title {
   font-family: "Inter";
   font-weight: 700;
@@ -74,5 +88,3 @@
   background-color: antiquewhite;
 }
 
-.member-name {
-}
