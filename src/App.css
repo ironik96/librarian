@@ -107,3 +107,34 @@
   justify-content: space-between;
   background-color: antiquewhite;
 }
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.nav-btn {
+  border: none;
+  font-family: "Inter";
+  font-style: normal;
+  border-radius: 20px;
+  width: 173px;
+  height: 40px;
+  background-color: var(--buttons-backgound-color);
+  font-size: 12px;
+  padding: 0px 15px;
+  text-decoration: none;
+  color: black;
+  line-height: 15px;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-btn-icon {
+  width: 25px;
+  height: 25px;
+}
