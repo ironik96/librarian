@@ -1,5 +1,5 @@
 import axios from "axios";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 
 const URL = "https://library-borrow-system.herokuapp.com/api/members";
 
@@ -14,13 +14,22 @@ class MembersStore {
   fetchMembers = async () => {
     try {
       const response = await axios.get(URL);
-      this.members = response.data;
+      runInAction(() => {
+        this.members = response.data;
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
-  addMembers = async () => {};
+  addMembers = async (member) => {
+    try {
+      const response = await axios.post(URL, member);
+      runInAction(() => this.members.push(response.data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
 const membersStore = new MembersStore();
 export default membersStore;

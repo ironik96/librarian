@@ -1,3 +1,4 @@
+import { observer } from "mobx-react";
 import membersStore from "../stores/membersStore";
 import MemberItem from "./MemberItem";
 
@@ -8,4 +9,4 @@ const MembersPage = () => {
   return <div className="members-content">{members}</div>;
 };
 
-export default MembersPage;
+export default observer(MembersPage);

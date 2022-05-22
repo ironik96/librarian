@@ -12,12 +12,16 @@ class BooksStore {
   books = [];
   filteredBooks = [];
 
+  setBooks = (newBooks) => {
+    this.books = newBooks;
+    this.filteredBooks = Array.from(this.books);
+  };
+
   fetchBooks = async () => {
     try {
       const response = await axios.get(URL);
       runInAction(() => {
-        this.books = response.data;
-        this.filteredBooks = Array.from(response.data);
+        this.setBooks(response.data);
       });
     } catch (error) {
       console.error(error);
@@ -25,9 +29,9 @@ class BooksStore {
   };
 
   addBook = async (book) => {
-    this.books.push(book);
     try {
-      await axios.post(URL, book);
+      const response = await axios.post(URL, book);
+      runInAction(() => this.setBooks([...this.books, response.data]));
     } catch (error) {
       console.error(error);
     }

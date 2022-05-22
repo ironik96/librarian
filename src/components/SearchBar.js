@@ -1,7 +1,7 @@
 import React from "react";
 import booksStore from "../stores/booksStore";
 
-const SearchBar = () => {
+const SearchBar = ({ isBooks }) => {
   const books = booksStore;
   const handleChange = (event) => books.filterBooks(event.target.value);
 
