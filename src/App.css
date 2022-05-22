@@ -8,9 +8,10 @@
   --font-size: 12px;
   --box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
-.App {
-  text-align: center;
+html {
+  overflow-y: scroll;
+}
+body {
   background-color: var(--background-color);
 }
 .my-logo {
@@ -19,21 +20,26 @@
   font-weight: 500;
   font-size: 48px;
   line-height: 56px;
-}
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-width: max-content;
 }
 
 .container {
   display: flex;
   gap: 50px;
-  flex-grow: 0;
-  flex-shrink: 0;
+  padding: 0;
+  margin: 50px auto;
+}
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+.main-page {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 .actions {
   display: flex;
@@ -73,14 +79,7 @@
   width: 20px;
 }
 
-.main-page {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
 .books-content {
-  background-color: black;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 20px;
@@ -89,7 +88,9 @@
 .book-card {
   display: flex;
   flex-direction: column;
+  text-align: center;
   align-items: center;
+  justify-content: center;
   padding: 20px 0px;
   gap: 5px;
   background-color: var(--card-background-color);
@@ -121,12 +122,6 @@
   background-color: antiquewhite;
 }
 
-.side-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
 .nav-btn {
   border: none;
   font-family: "Inter";
@@ -134,7 +129,8 @@
   border-radius: 20px;
   width: 173px;
   height: 40px;
-  background-color: var(--buttons-backgound-color);
+  background-color: white;
+  /* background-color: var(--buttons-backgound-color); */
   font-size: 12px;
   padding: 0px 15px;
   text-decoration: none;
@@ -145,6 +141,10 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+}
+.nav-btn:hover {
+  color: white;
+  background-color: var(--buttons-backgound-color);
 }
 
 .nav-btn-icon {

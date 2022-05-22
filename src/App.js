@@ -7,19 +7,15 @@ import MembersPage from "./components/MembersPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="container">
-          <Navigator />
-          <div className="main-page">
-            <Actions />
-            <Routes>
-              <Route path="/" element={<BooksList />} />
-              <Route path="/members" element={<MembersPage />} />
-            </Routes>
-          </div>
-        </div>
-      </header>
+    <div className="container">
+      <Navigator />
+      <div className="main-page">
+        <Actions />
+        <Routes>
+          <Route path="/" element={<BooksList />} />
+          <Route path="/members" element={<MembersPage />} />
+        </Routes>
+      </div>
     </div>
   );
 }

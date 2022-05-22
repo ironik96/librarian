@@ -4,14 +4,10 @@ import BookItem from "./BookItem";
 
 const BooksList = () => {
   const books = booksStore.filteredBooks
-    .slice(0, 8)
+    // .slice(0, 8)
     .map((book) => <BookItem book={book} key={book._id} />);
 
-  return (
-    <div className="books-content">
-      {books.length === 0 ? "no book" : books}
-    </div>
-  );
+  return <div className="books-content">{books}</div>;
 };
 
 export default observer(BooksList);
