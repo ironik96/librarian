@@ -1,11 +1,11 @@
 const MemberItem = ({ member }) => {
   return (
-    <div className="member-item">
+    <button className="member-item">
+      <div className={"membership " + member.membership}></div>
       <div className="member-name">
         {member.firstName} {member.lastName}
       </div>
-      <div>{member.membership}</div>
-    </div>
+    </button>
   );
 };
 
