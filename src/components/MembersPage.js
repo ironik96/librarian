@@ -1,6 +1,7 @@
 import { observer } from "mobx-react";
 import membersStore from "../stores/membersStore";
 import MemberItem from "./MemberItem";
+import booksStore from "../stores/booksStore";
 
 const MembersPage = () => {
   const members = membersStore.members.map((member) => (
