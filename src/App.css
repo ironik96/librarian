@@ -160,6 +160,51 @@ html {
   color: var(--hint-color);
 }
 
+.book-details-container{
+  background-color: var(--card-background-color);
+  display: flex;
+  flex-direction: row;
+  gap: 7%;
+  padding: 6%;
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  /* text-decoration: none; */
+
+}
+.book-info{
+  display: flex;
+  flex-direction: column;
+  gap: 7%;
+  justify-content: center;
+  
+}
+.borrowers {
+  display: flex;
+  gap: 1%;
+}
+.to-borrow{
+  display: flex;
+  flex-direction: row;
+  gap: 3%;
+}
+.add-borrower{
+  border: none;
+  font-family: "Inter";
+  font-style: normal;
+  border-radius: 20px;
+  width: 173px;
+  height: 40px;
+  background-color: var(--buttons-backgound-color);
+  font-size: 20px;
+  padding: 0px 15px;
+  text-decoration: none;
+  color: black;
+  box-shadow: var(--box-shadow);
+
+  justify-content: center;
+  align-items: center;
+}
+
 .nav-btn {
   border: none;
   font-family: "Inter";
