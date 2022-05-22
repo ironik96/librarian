@@ -3,7 +3,7 @@ import Navigator from "./components/Navigator";
 import BooksList from "./components/BooksList";
 import Actions from "./components/Actions";
 import { Route, Routes } from "react-router-dom";
-import MembersPage from "./components/MembersPage";
+import MembersList from "./components/MembersList";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Actions />
         <Routes>
           <Route path="/" element={<BooksList />} />
-          <Route path="/members" element={<MembersPage />} />
+          <Route path="/members" element={<MembersList />} />
         </Routes>
       </div>
     </div>

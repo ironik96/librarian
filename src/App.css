@@ -142,6 +142,7 @@ html {
   box-shadow: var(--box-shadow);
   border-radius: 30px;
   width: 256px;
+  border: none;
 }
 .book-img {
   width: 113px;
