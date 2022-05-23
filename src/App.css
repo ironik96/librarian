@@ -177,6 +177,14 @@ html {
   box-shadow: var(--box-shadow);
 }
 
+.title-in-bold{
+  font-weight: bold;
+}
+.one-field{
+  display: flex;
+  gap: 10px;
+}
+
 
 .book-img-inside {
   display: block;
@@ -225,6 +233,7 @@ html {
   display: flex;
   flex-direction: row;
   gap: 3%;
+
 }
 .add-borrower {
   border: none;
@@ -234,7 +243,7 @@ html {
   width: 173px;
   height: 40px;
   background-color: var(--buttons-backgound-color);
-  font-size: 20px;
+  font-size: 16px;
   padding: 0px 15px;
   text-decoration: none;
   color: black;

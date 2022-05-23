@@ -4,18 +4,21 @@ import booksStore from "../stores/booksStore";
 import membersStore from "../stores/membersStore";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Form from "react-bootstrap/Form";
 
 const NUMBER_OF_ALLOWED_BOOKS = { silver: 2, gold: 3, platinum: 5 };
 
 const BookDetails = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const closeModal = () => setIsOpen(false);
+  const openModal = () => setIsOpen(true);
+
   const { bookSlug } = useParams();
 
   const book = booksStore.books.find((element) => element.slug === bookSlug);
   const members = membersStore.members;
   const [borrowerID, setBorrower] = useState(members[0]?._id);
   if (!book) return <p>Loading ...</p>;
-
-  const selectorClass = book.available ? "" : "hide-select";
 
   const borrowedBy = members
     .filter((member) => book.borrowedBy.includes(member._id))
@@ -42,6 +45,7 @@ const BookDetails = () => {
 
     if (numOfBorrowedBooks === numOfAllowedBooks) {
       console.log("not allowed to borrow");
+      openModal();
     } else {
       console.log("allowed to borrow");
       booksStore.borrowBook(book._id, wantsToBorrow._id);
@@ -61,20 +65,30 @@ const BookDetails = () => {
       <div className="book-info">
         <div className="book-title-inside">{book.title}</div>
         <div className="book-details">
-          <div>Author: {book.author}</div>
-          <div>Genre: {book.genres}</div>
-          <div>
-            Availability: {book.available ? " ✔ Available" : "✘ Not available"}
+          <div className="one-field">
+            <div className="title-in-bold">Author:</div>
+            <div>{book.author}</div>
           </div>
+
+          <div className="one-field">
+            <div className="title-in-bold">Genre: </div>
+            <div>{book.genres}</div>
+          </div>
+
+          <div className="one-field">
+            <div className="title-in-bold">Availability: </div>
+            <div>{book.available ? " ✔ Available" : "✘ Not available"}</div>
+          </div>
+
           <div className="borrowed-by-field">
-            <div>Borrowed by: </div>
+            <div className="title-in-bold">Borrowed by: </div>
             <div className="borrowers">{borrowedBy}</div>
           </div>
 
           <div className="to-borrow">
-            <select className={selectorClass} onChange={handleChange}>
-              {membersNames}
-            </select>
+            {book.available && (
+              <Form.Select onChange={handleChange}>{membersNames}</Form.Select>
+            )}
             {button}
           </div>
         </div>
