@@ -13,7 +13,7 @@ const Actions = () => {
     <div className="actions">
       <div className="my-logo">Readable windows</div>
       <SearchBar isBooks={isBooks} isMembers={isMembers} />
-      <AddButton isBooks={isBooks} />
+      <AddButton isBooks={isBooks} isMembers={isMembers}/>
     </div>
   );
 };
