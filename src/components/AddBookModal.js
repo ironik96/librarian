@@ -8,8 +8,8 @@ function AddBookModal(props) {
     author: "",
     title: "",
     genres: [],
-    available: false,
-    image: "",
+    available: true,
+    image: "/icons/books.png",
   };
   const [book, setBook] = useState(emptyBook);
 
@@ -62,16 +62,6 @@ function AddBookModal(props) {
             <InputGroup.Text>Book cover</InputGroup.Text>
             <Form.Control type="text" name="image" onChange={handleChange} />
           </InputGroup>
-          <br />
-
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check
-              type="checkbox"
-              label="Available"
-              name="available"
-              onChange={handleChange}
-            />
-          </Form.Group>
           <br />
         </Form>
       </Modal.Body>

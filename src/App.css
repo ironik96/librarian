@@ -11,6 +11,7 @@
 html {
   overflow-y: scroll;
 }
+
 .my-logo {
   font-family: "Megrim", cursive;
   font-style: normal;
@@ -124,10 +125,27 @@ html {
 
 .member-name {
   font-family: "Inter";
+  color: black;
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 29px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
 }
 
 .book-card {
@@ -147,6 +165,7 @@ html {
   width: 113px;
 }
 .book-title {
+  color: black;
   font-family: "Inter";
   font-weight: 700;
   line-height: 15px;
@@ -168,7 +187,6 @@ html {
   padding: 6%;
   border-radius: 20px;
   box-shadow: var(--box-shadow);
-  /* text-decoration: none; */
 }
 .book-info {
   display: flex;
@@ -203,6 +221,42 @@ html {
   align-items: center;
 }
 
+.member-details-container {
+  font-family: "Inter";
+  background-color: var(--card-background-color);
+  display: flex;
+  flex-direction: column;
+  padding: 6%;
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  gap: 30px;
+}
+
+.member-header {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.member-full-name {
+  font-size: 34px;
+  font-weight: bold;
+  border-bottom: 3px solid var(--buttons-backgound-color);
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 22px;
+}
+
+.borrowed-books {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
+}
 .nav-btn {
   border: none;
   font-family: "Inter";

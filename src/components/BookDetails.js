@@ -9,6 +9,7 @@ const NUMBER_OF_ALLOWED_BOOKS = { silver: 2, gold: 3, platinum: 5 };
 
 const BookDetails = () => {
   const { bookSlug } = useParams();
+
   const book = booksStore.books.find((element) => element.slug === bookSlug);
   const members = membersStore.members;
   const [borrowerID, setBorrower] = useState(members[0]?._id);
