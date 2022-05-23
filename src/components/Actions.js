@@ -8,10 +8,11 @@ const MEMBERS_PATH = "/members";
 const Actions = () => {
   const routeLocation = useLocation();
   const isBooks = routeLocation.pathname === BOOKS_PATH;
+  const isMembers = routeLocation.pathname === MEMBERS_PATH;
   return (
     <div className="actions">
       <div className="my-logo">Readable windows</div>
-      <SearchBar isBooks={isBooks} />
+      <SearchBar isBooks={isBooks} isMembers={isMembers} />
       <AddButton isBooks={isBooks} />
     </div>
   );

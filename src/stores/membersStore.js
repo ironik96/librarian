@@ -14,26 +14,37 @@ class MembersStore {
   }
 
   members = [];
+  filteredMembers = [];
 
   fetchMembers = async () => {
     try {
       const response = await axios.get(URL);
       runInAction(() => {
-        this.members = response.data;
+        this.setMembers(response.data);
       });
     } catch (error) {
       console.error(error);
     }
   };
 
+  filterMembers = (query) => {
+    this.filteredMembers = this.members.filter((member) => {
+      return (
+        member.firstName.toLowerCase().includes(query.toLowerCase()) ||
+        member.lastName.toLowerCase().includes(query.toLowerCase())
+      );
+    });
+  };
+
   setMembers = (newMembers) => {
     this.members = [...newMembers];
+    this.filteredMembers = [...newMembers];
   };
 
   addMembers = async (member) => {
     try {
       const response = await axios.post(URL, member);
-      runInAction(() => this.members.push(response.data));
+      runInAction(() => this.setMembers([...this.members, response.data]));
     } catch (error) {
       console.error(error);
     }
@@ -55,7 +66,7 @@ class MembersStore {
         this.members.map((member) =>
           member._id === memberId ? response.data : member
         );
-        booksStore.fetchBooks()
+        booksStore.fetchBooks();
       });
     } catch (error) {
       console.error(error);

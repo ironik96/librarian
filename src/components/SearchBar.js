@@ -2,22 +2,31 @@ import React from "react";
 import booksStore from "../stores/booksStore";
 import membersStore from "../stores/membersStore";
 
-const SearchBar = ({ isBooks }) => {
-  const books = booksStore;
-  const members = membersStore;
-  const handleChange = (event) => {
-    isBooks
-      ? books.filterBooks(event.target.value)
-      : books.filterBooks(event.target.value);
-    //members.filterMembers(event.target.value);
-  };
-  const searchPlaceholder = isBooks ? "🔎	Search Books" : "🔎	Search Members";
+const SearchBar = ({ isBooks, isMembers }) => {
+  if (isBooks) return <BooksSearch />;
+  if (isMembers) return <MembersSearch />;
+};
 
+const BooksSearch = () => {
+  const handleChange = (event) => booksStore.filterBooks(event.target.value);
   return (
     <input
       type="text"
       className="search-input"
-      placeholder={searchPlaceholder}
+      placeholder="🔎	Search Books"
+      onChange={handleChange}
+    />
+  );
+};
+
+const MembersSearch = () => {
+  const handleChange = (event) =>
+    membersStore.filterMembers(event.target.value);
+  return (
+    <input
+      type="text"
+      className="search-input"
+      placeholder="🔎	Search Members"
       onChange={handleChange}
     />
   );
