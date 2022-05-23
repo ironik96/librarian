@@ -160,7 +160,7 @@ html {
   color: var(--hint-color);
 }
 
-.book-details-container{
+.book-details-container {
   background-color: var(--card-background-color);
   display: flex;
   flex-direction: row;
@@ -169,25 +169,23 @@ html {
   border-radius: 20px;
   box-shadow: var(--box-shadow);
   /* text-decoration: none; */
-
 }
-.book-info{
+.book-info {
   display: flex;
   flex-direction: column;
   gap: 7%;
   justify-content: center;
-  
 }
 .borrowers {
   display: flex;
   gap: 1%;
 }
-.to-borrow{
+.to-borrow {
   display: flex;
   flex-direction: row;
   gap: 3%;
 }
-.add-borrower{
+.add-borrower {
   border: none;
   font-family: "Inter";
   font-style: normal;
@@ -233,4 +231,8 @@ html {
 .nav-btn-icon {
   width: 25px;
   height: 25px;
+}
+
+.hide-select {
+  display: none;
 }
