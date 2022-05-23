@@ -132,21 +132,6 @@ html {
   line-height: 29px;
 }
 
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-a:active {
-  text-decoration: none;
-}
 
 .book-card {
   display: flex;
@@ -154,6 +139,8 @@ a:active {
   text-align: center;
   align-items: center;
   justify-content: center;
+  height: 249px;
+  width: 256px; 
   padding: 20px 0px;
   gap: 5px;
   background-color: var(--card-background-color);
@@ -162,7 +149,7 @@ a:active {
   width: 256px;
 }
 .book-img {
-  width: 113px;
+  max-width: 113px;
 }
 .book-title {
   color: black;
@@ -186,19 +173,55 @@ a:active {
   gap: 7%;
   padding: 6%;
   border-radius: 20px;
+  align-items: center;
   box-shadow: var(--box-shadow);
 }
+
+
+.book-img-inside {
+  display: block;
+  max-width: 200px;
+  max-height: 320px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  
+}
+
 .book-info {
   display: flex;
   flex-direction: column;
-  gap: 7%;
+  gap: 10%;
   justify-content: center;
 }
+
+.book-title-inside{
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 3px solid var(--buttons-backgound-color);
+}
+
+.book-details{
+  padding-top:20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 20px;
+  font-family: "Inter";
+  font-size: 22px;
+  
+}
+
 .borrowers {
   display: flex;
-  gap: 1%;
+  flex-direction: column;
+  gap: 6%;
+  padding-left: 7%;
+  color: black;
+
 }
 .to-borrow {
+  padding-top: 7%;
   display: flex;
   flex-direction: row;
   gap: 3%;
@@ -244,6 +267,7 @@ a:active {
   border-bottom: 3px solid var(--buttons-backgound-color);
 }
 
+
 .member-info {
   display: flex;
   flex-direction: column;
@@ -278,7 +302,8 @@ a:active {
   gap: 5px;
 }
 .nav-btn:hover {
-  color: white;
+  /* color: white; */
+  color: black;
   background-color: var(--buttons-backgound-color);
 }
 
@@ -289,4 +314,25 @@ a:active {
 
 .hide-select {
   display: none;
+}
+
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+a:active {
+  text-decoration: none;
+  color: black;
 }
