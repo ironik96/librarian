@@ -68,6 +68,12 @@ const BookDetails = () => {
     <ReturnButton handleReturn={handleReturn} />
   );
 
+  let bookGenres = "";
+  book.genres.forEach((genre, index) => {
+    if (index === book.genres.length - 1) return (bookGenres += genre);
+    return (bookGenres += genre + ", ");
+  });
+
   return (
     <>
       <div className="book-details-container">
@@ -82,7 +88,7 @@ const BookDetails = () => {
 
             <div className="one-field">
               <div className="title-in-bold">Genre: </div>
-              <div>{book.genres}</div>
+              <div>{bookGenres}</div>
             </div>
 
             <div className="one-field">
