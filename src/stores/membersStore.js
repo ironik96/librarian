@@ -30,6 +30,9 @@ class MembersStore {
       console.error(error);
     }
   };
+
+  getMember = (memberId) =>
+    this.members.find((member) => member._id === memberId);
 }
 const membersStore = new MembersStore();
 export default membersStore;

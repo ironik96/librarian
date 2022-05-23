@@ -47,6 +47,13 @@ class BooksStore {
       );
     });
   };
+
+  getBook = (bookId) => this.books.find((book) => book._id === bookId);
+
+  getBorrowerId = (bookId) => {
+    const borrowers = this.getBook(bookId).borrowedBy;
+    return borrowers[borrowers.length - 1];
+  };
 }
 const booksStore = new BooksStore();
 export default booksStore;

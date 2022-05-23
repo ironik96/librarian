@@ -7,8 +7,11 @@ import { Link } from "react-router-dom";
 const BookDetails = () => {
   const { bookSlug } = useParams();
   const book = booksStore.books.find((element) => element.slug === bookSlug);
+  if (!book) return <p>Loading ...</p>;
 
-  const borrowedBy = membersStore.members
+  const members = membersStore.members;
+
+  const borrowedBy = members
     .filter((member) => book.borrowedBy.includes(member._id))
     .map((member) => (
       <Link to={`/members/${member.slug}`} key={member._id}>
@@ -16,15 +19,19 @@ const BookDetails = () => {
       </Link>
     ));
 
-  const membersNames = membersStore.members.map((member) => (
+  const membersNames = members.map((member) => (
     <option key={member._id} value={member.firstName}>
       {member.firstName}
     </option>
   ));
 
+  const handleSelector = () => {};
+
+  const handleBorrowing = () => {};
+
   return (
     <div className="book-details-container">
-      <img src={book.image} alt={book.title} />
+      <img className="book-img" src={book.image} alt={book.title} />
       <div className="book-info">
         <div>title: {book.title}</div>
         <div>author: {book.author}</div>
@@ -32,10 +39,14 @@ const BookDetails = () => {
         <div>
           availability: {book.available ? "available" : "not available"}
         </div>
-        <div className="borrowers">borrowed by: {borrowedBy} </div>
+        <div className="borrowers">borrowed by: {borrowedBy}</div>
         <div className="to-borrow">
-          <select>{membersNames}</select>
-          <div className="add-borrower">Add a borrower</div>
+          <select value={members[0].firstName} onChange={handleSelector}>
+            {membersNames}
+          </select>
+          <button className="add-borrower" onClick={handleBorrowing}>
+            Add a borrower
+          </button>
         </div>
       </div>
     </div>
