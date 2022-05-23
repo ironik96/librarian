@@ -21,12 +21,12 @@ const BookDetails = () => {
     .filter((member) => book.borrowedBy.includes(member._id))
     .map((member) => (
       <Link to={`/members/${member.slug}`} key={member._id}>
-        {member.firstName}
+        {`• ${member.firstName}  ${member.lastName}`}
       </Link>
     ));
 
   const membersNames = members.map((member) => (
-    <option key={member._id} value={member._id}>
+    <option className="one-borrower" key={member._id} value={member._id}>
       {`${member.firstName} ${member.lastName}`}
     </option>
   ));
@@ -68,20 +68,26 @@ const BookDetails = () => {
 
   return (
     <div className="book-details-container">
-      <img className="book-img" src={book.image} alt={book.title} />
+      <img className="book-img-inside" src={book.image} alt={book.title} />
       <div className="book-info">
-        <div>title: {book.title}</div>
-        <div>author: {book.author}</div>
-        <div>genre: {book.genres}</div>
-        <div>
-          availability: {book.available ? "available" : "not available"}
-        </div>
-        <div className="borrowers">borrowed by: {borrowedBy}</div>
-        <div className="to-borrow">
-          <select className={selectorClass} onChange={handleChange}>
-            {membersNames}
-          </select>
-          {button}
+        <div className="book-title-inside">{book.title}</div>
+        <div className="book-details">
+          <div>Author: {book.author}</div>
+          <div>Genre: {book.genres}</div>
+          <div>
+            Availability: {book.available ? " ✔ Available" : "✘ Not available"}
+          </div>
+          <div className="borrowed-by-field">
+            <div>Borrowed by: </div>
+            <div className="borrowers">{borrowedBy}</div>
+          </div>
+
+          <div className="to-borrow">
+            <select className={selectorClass} onChange={handleChange}>
+              {membersNames}
+            </select>
+            {button}
+          </div>
         </div>
       </div>
     </div>
