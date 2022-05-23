@@ -2,6 +2,8 @@ import axios from "axios";
 import { makeAutoObservable, runInAction } from "mobx";
 
 const URL = "https://library-borrow-system.herokuapp.com/api/books";
+const getBorrowUrl = (bookId, memberId) =>
+  `https://library-borrow-system.herokuapp.com/api/books/${bookId}/borrow/${memberId}`;
 
 class BooksStore {
   constructor() {
@@ -54,9 +56,13 @@ class BooksStore {
     const borrowers = this.getBook(bookId).borrowedBy;
     return borrowers[borrowers.length - 1];
   };
-  modifyBooksBorrowedList = async (myURL) => {
+
+  modifyBooksBorrowedList = async (bookId, memberId) => {
     try {
-      await axios.put(myURL);
+      const response = await axios.put(getBorrowUrl(bookId, memberId));
+      this.setBooks(
+        this.books.map((book) => (book._id === bookId ? response.data : book))
+      );
     } catch (error) {
       console.error(error);
     }

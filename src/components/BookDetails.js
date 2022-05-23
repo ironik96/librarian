@@ -5,15 +5,15 @@ import membersStore from "../stores/membersStore";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const MEMBERSHIPS = ["silver", "gold", "platinum"];
-const NUMBER_OF_ALLOWED_BOOKS = [2, 3, 5];
+const NUMBER_OF_ALLOWED_BOOKS = { silver: 2, gold: 3, platinum: 5 };
 
 const BookDetails = () => {
   const { bookSlug } = useParams();
   const book = booksStore.books.find((element) => element.slug === bookSlug);
-  if (!book) return <p>Loading ...</p>;
-
   const members = membersStore.members;
+  const [borrowerID, setBorrower] = useState(members[0]._id);
+
+  if (!book) return <p>Loading ...</p>;
 
   const borrowedBy = members
     .filter((member) => book.borrowedBy.includes(member._id))
@@ -23,36 +23,26 @@ const BookDetails = () => {
       </Link>
     ));
 
-  const membersNames = membersStore.members.map((member) => (
+  const membersNames = members.map((member) => (
     <option key={member._id} value={member._id}>
       {`${member.firstName} ${member.lastName}`}
     </option>
   ));
-
-  const [borrowerID, setBorrower] = useState(membersStore.members[0]._id);
 
   const handleChange = (event) => {
     setBorrower(event.target.value);
   };
 
   const handleBorrow = () => {
-    const wantsToBorrow = membersStore.members.find(
-      (member) => member._id === borrowerID
-    );
+    const wantsToBorrow = members.find((member) => member._id === borrowerID);
     const numOfBorrowedBooks = wantsToBorrow.currentlyBorrowedBooks.length;
-    const indexOfMembership = MEMBERSHIPS.indexOf(wantsToBorrow.membership);
-    const numOfAllowedBooks = NUMBER_OF_ALLOWED_BOOKS[indexOfMembership];
+    const numOfAllowedBooks = NUMBER_OF_ALLOWED_BOOKS[wantsToBorrow.membership];
 
     if (numOfBorrowedBooks === numOfAllowedBooks) {
       console.log("not allowed to borrow");
     } else {
       console.log("allowed to borrow");
-      const URL = `https://library-borrow-system.herokuapp.com/api/books/${book._id}/borrow/${wantsToBorrow._id}`;
-      membersStore.modifyMembersBorrowingList(URL);
-      //booksStore.modifyBooksBorrowedList(URL);
-      //set book as unavailable
-      //save member's id in the borrowedby list
-      //save the book's id in the borrowedbooks list
+      booksStore.modifyBooksBorrowedList(book._id, wantsToBorrow._id);
     }
   };
 
