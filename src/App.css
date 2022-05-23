@@ -132,7 +132,6 @@ html {
   line-height: 29px;
 }
 
-
 .book-card {
   display: flex;
   flex-direction: column;
@@ -140,7 +139,7 @@ html {
   align-items: center;
   justify-content: center;
   height: 249px;
-  width: 256px; 
+  width: 256px;
   padding: 20px 0px;
   gap: 5px;
   background-color: var(--card-background-color);
@@ -177,14 +176,13 @@ html {
   box-shadow: var(--box-shadow);
 }
 
-.title-in-bold{
+.title-in-bold {
   font-weight: bold;
 }
-.one-field{
+.one-field {
   display: flex;
   gap: 10px;
 }
-
 
 .book-img-inside {
   display: block;
@@ -193,7 +191,6 @@ html {
   width: auto;
   height: auto;
   border-radius: 10px;
-  
 }
 
 .book-info {
@@ -203,21 +200,20 @@ html {
   justify-content: center;
 }
 
-.book-title-inside{
+.book-title-inside {
   font-size: 30px;
   font-weight: bold;
   border-bottom: 3px solid var(--buttons-backgound-color);
 }
 
-.book-details{
-  padding-top:20px;
+.book-details {
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   font-size: 20px;
   font-family: "Inter";
   font-size: 22px;
-  
 }
 
 .borrowers {
@@ -226,14 +222,12 @@ html {
   gap: 6%;
   padding-left: 7%;
   color: black;
-
 }
 .to-borrow {
   padding-top: 7%;
   display: flex;
   flex-direction: row;
   gap: 3%;
-
 }
 .add-borrower {
   border: none;
@@ -275,7 +269,6 @@ html {
   font-weight: bold;
   border-bottom: 3px solid var(--buttons-backgound-color);
 }
-
 
 .member-info {
   display: flex;
@@ -325,7 +318,6 @@ html {
   display: none;
 }
 
-
 a:link {
   text-decoration: none;
   color: black;
@@ -344,4 +336,8 @@ a:hover {
 a:active {
   text-decoration: none;
   color: black;
+}
+
+.filter-selector {
+  width: 180px;
 }

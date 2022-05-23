@@ -31,3 +31,4 @@ const Genres = ({ handleGenres }) => {
 };
 
 export default Genres;
+export { allGenres };

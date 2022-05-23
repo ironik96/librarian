@@ -15,6 +15,12 @@ class BooksStore {
 
   books = [];
   filteredBooks = [];
+  filter = "";
+
+  setFilter = (newFilter) => {
+    this.filter = newFilter;
+    this.filterBooks("");
+  };
 
   setBooks = (newBooks) => {
     this.books = [...newBooks];
@@ -44,9 +50,9 @@ class BooksStore {
   filterBooks = (query) => {
     this.filteredBooks = this.books.filter((book) => {
       return (
-        book.title.toLowerCase().includes(query.toLowerCase()) ||
+        book.title.toLowerCase().includes(query.toLowerCase()) &&
         book.genres.some((genre) =>
-          genre.toLowerCase().includes(query.toLowerCase())
+          genre.toLowerCase().includes(this.filter.toLowerCase())
         )
       );
     });
@@ -75,5 +81,6 @@ class BooksStore {
     }
   };
 }
+
 const booksStore = new BooksStore();
 export default booksStore;

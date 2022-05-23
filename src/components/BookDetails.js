@@ -5,13 +5,18 @@ import membersStore from "../stores/membersStore";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
+import BasicModal from "./BasicModal";
 
 const NUMBER_OF_ALLOWED_BOOKS = { silver: 2, gold: 3, platinum: 5 };
 
 const BookDetails = () => {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
-  const openModal = () => setIsOpen(true);
+
+  const [modalContent, setModalContent] = useState({
+    title: "",
+    body: "",
+  });
 
   const { bookSlug } = useParams();
 
@@ -44,8 +49,12 @@ const BookDetails = () => {
     const numOfAllowedBooks = NUMBER_OF_ALLOWED_BOOKS[wantsToBorrow.membership];
 
     if (numOfBorrowedBooks === numOfAllowedBooks) {
-      console.log("not allowed to borrow");
-      openModal();
+      setModalContent({
+        title: "Sorry",
+        body: `${wantsToBorrow.firstName} has reached the maximum amount of borrowed books!`,
+      });
+
+      setIsOpen(true);
     } else {
       console.log("allowed to borrow");
       booksStore.borrowBook(book._id, wantsToBorrow._id);
@@ -60,47 +69,57 @@ const BookDetails = () => {
   );
 
   return (
-    <div className="book-details-container">
-      <img className="book-img-inside" src={book.image} alt={book.title} />
-      <div className="book-info">
-        <div className="book-title-inside">{book.title}</div>
-        <div className="book-details">
-          <div className="one-field">
-            <div className="title-in-bold">Author:</div>
-            <div>{book.author}</div>
-          </div>
+    <>
+      <div className="book-details-container">
+        <img className="book-img-inside" src={book.image} alt={book.title} />
+        <div className="book-info">
+          <div className="book-title-inside">{book.title}</div>
+          <div className="book-details">
+            <div className="one-field">
+              <div className="title-in-bold">Author:</div>
+              <div>{book.author}</div>
+            </div>
 
-          <div className="one-field">
-            <div className="title-in-bold">Genre: </div>
-            <div>{book.genres}</div>
-          </div>
+            <div className="one-field">
+              <div className="title-in-bold">Genre: </div>
+              <div>{book.genres}</div>
+            </div>
 
-          <div className="one-field">
-            <div className="title-in-bold">Availability: </div>
-            <div>{book.available ? " ✔ Available" : "✘ Not available"}</div>
-          </div>
+            <div className="one-field">
+              <div className="title-in-bold">Availability: </div>
+              <div>{book.available ? " ✔ Available" : "✘ Not available"}</div>
+            </div>
 
-          <div className="borrowed-by-field">
-            <div className="title-in-bold">Borrowed by: </div>
-            <div className="borrowers">{borrowedBy}</div>
-          </div>
+            <div className="borrowed-by-field">
+              <div className="title-in-bold">Borrowed by: </div>
+              <div className="borrowers">{borrowedBy}</div>
+            </div>
 
-          <div className="to-borrow">
-            {book.available && (
-              <Form.Select onChange={handleChange}>{membersNames}</Form.Select>
-            )}
-            {button}
+            <div className="to-borrow">
+              {book.available && (
+                <Form.Select onChange={handleChange}>
+                  {membersNames}
+                </Form.Select>
+              )}
+              {button}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <BasicModal
+        isOpen={isOpen}
+        closeModal={closeModal}
+        title={modalContent.title}
+        body={modalContent.body}
+      />
+    </>
   );
 };
 
 const BorrowButton = ({ handleBorrow }) => {
   return (
     <button onClick={handleBorrow} className="add-borrower" name="fullName">
-      Add a borrower
+      Borrow
     </button>
   );
 };
