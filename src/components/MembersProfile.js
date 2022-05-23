@@ -11,15 +11,24 @@ const MembersProfile = () => {
 
   const borrowedBooks = booksStore.books
     .filter((book) => member.currentlyBorrowedBooks.includes(book._id))
-    .map((book) => <div key={book._id}>{book.title}</div>);
+    .map((book) => (
+      <div className="borrowed-books" key={book._id}>
+        {`• ${book.title}`}
+      </div>
+    ));
 
   return (
-    <div>
-      <div>
-        {member.firstName} {member.lastName}
+    <div className="member-details-container">
+      <div className="member-header">
+        <div className={"membership " + member.membership}></div>
+        <div className="member-full-name">
+          {member.firstName} {member.lastName}
+        </div>
       </div>
-      <div>Membership: {member.membership}</div>
-      <div>Borrowed Books: {borrowedBooks}</div>
+      <div className="member-info">
+        <div>Membership: {member.membership}</div>
+        <div>Borrowed Books: {borrowedBooks}</div>
+      </div>
     </div>
   );
 };

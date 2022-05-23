@@ -10,6 +10,8 @@ const NUMBER_OF_ALLOWED_BOOKS = [2, 3, 5];
 
 const BookDetails = () => {
   const { bookSlug } = useParams();
+  const [borrowerID, setBorrower] = useState(membersStore.members[0]._id);
+
   const book = booksStore.books.find((element) => element.slug === bookSlug);
   if (!book) return <p>Loading ...</p>;
 
@@ -28,8 +30,6 @@ const BookDetails = () => {
       {`${member.firstName} ${member.lastName}`}
     </option>
   ));
-
-  const [borrowerID, setBorrower] = useState(membersStore.members[0]._id);
 
   const handleChange = (event) => {
     setBorrower(event.target.value);
