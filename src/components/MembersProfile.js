@@ -26,8 +26,14 @@ const MembersProfile = () => {
         </div>
       </div>
       <div className="member-info">
-        <div>Membership: {member.membership}</div>
-        <div>Borrowed Books: {borrowedBooks}</div>
+        <div className="one-field">
+          <div className="title-in-bold">Membership: </div>
+          <div>{member.membership}</div>
+        </div>
+        <div className="one-field">
+          <div className="title-in-bold">Borrowed books: </div>
+          <div>{borrowedBooks}</div>
+        </div>
       </div>
     </div>
   );
