@@ -30,6 +30,15 @@ class MembersStore {
       console.error(error);
     }
   };
+
+  modifyMembersBorrowingList = async (myURL) => {
+    try {
+      const response = await axios.put(myURL);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
 const membersStore = new MembersStore();
 export default membersStore;

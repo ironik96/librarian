@@ -47,6 +47,14 @@ class BooksStore {
       );
     });
   };
+
+  modifyBooksBorrowedList = async (myURL) => {
+    try {
+      await axios.put(myURL);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
 const booksStore = new BooksStore();
 export default booksStore;
