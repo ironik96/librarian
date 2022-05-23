@@ -1,7 +1,9 @@
 import axios from "axios";
 import { makeAutoObservable, runInAction } from "mobx";
+import membersStore from "./membersStore";
 
 const URL = "https://library-borrow-system.herokuapp.com/api/books";
+
 const getBorrowUrl = (bookId, memberId) =>
   `https://library-borrow-system.herokuapp.com/api/books/${bookId}/borrow/${memberId}`;
 
@@ -15,8 +17,8 @@ class BooksStore {
   filteredBooks = [];
 
   setBooks = (newBooks) => {
-    this.books = newBooks;
-    this.filteredBooks = Array.from(this.books);
+    this.books = [...newBooks];
+    this.filteredBooks = [...this.books];
   };
 
   fetchBooks = async () => {
@@ -51,18 +53,23 @@ class BooksStore {
   };
 
   getBook = (bookId) => this.books.find((book) => book._id === bookId);
+  getBookIndex = (bookId) =>
+    this.books.findIndex((book) => book._id === bookId);
 
   getBorrowerId = (bookId) => {
     const borrowers = this.getBook(bookId).borrowedBy;
     return borrowers[borrowers.length - 1];
   };
 
-  modifyBooksBorrowedList = async (bookId, memberId) => {
+  borrowBook = async (bookId, memberId) => {
     try {
       const response = await axios.put(getBorrowUrl(bookId, memberId));
-      this.setBooks(
-        this.books.map((book) => (book._id === bookId ? response.data : book))
-      );
+      runInAction(() => {
+        this.setBooks(
+          this.books.map((book) => (book._id === bookId ? response.data : book))
+        );
+        membersStore.fetchMembers();
+      });
     } catch (error) {
       console.error(error);
     }

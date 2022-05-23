@@ -44,21 +44,10 @@ const BookDetails = () => {
       console.log("not allowed to borrow");
     } else {
       console.log("allowed to borrow");
-      booksStore.modifyBooksBorrowedList(book._id, wantsToBorrow._id);
+      booksStore.borrowBook(book._id, wantsToBorrow._id);
     }
   };
-  const handleReturn = () => {
-    const wantsToBorrow = members.find((member) => member._id === borrowerID);
-    const numOfBorrowedBooks = wantsToBorrow.currentlyBorrowedBooks.length;
-    const numOfAllowedBooks = NUMBER_OF_ALLOWED_BOOKS[wantsToBorrow.membership];
-
-    if (numOfBorrowedBooks === numOfAllowedBooks) {
-      console.log("not allowed to borrow");
-    } else {
-      console.log("allowed to borrow");
-      booksStore.modifyBooksBorrowedList(book._id, wantsToBorrow._id);
-    }
-  };
+  const handleReturn = () => membersStore.returnBook(book._id);
 
   const button = book.available ? (
     <BorrowButton handleBorrow={handleBorrow} />
