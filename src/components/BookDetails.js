@@ -112,7 +112,7 @@ const BookDetails = () => {
 
             {!book.available && (
               <div className="borrowed-by-field">
-                <div className="title-in-bold">Currently borrowed by: </div>
+                <div className="title-in-bold">All borrowers: </div>
                 <div className="borrowers">{currentBorrower()}</div>
               </div>
             )}
