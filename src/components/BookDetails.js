@@ -33,6 +33,20 @@ const BookDetails = () => {
       </Link>
     ));
 
+  const currentBorrower = () => {
+    const findCurrentBorrower = members.find(
+      (member) => member._id === book.borrowedBy[book.borrowedBy.length - 1]
+    );
+    return (
+      <Link
+        to={`/members/${findCurrentBorrower.slug}`}
+        key={findCurrentBorrower._id}
+      >
+        {`• ${findCurrentBorrower.firstName}  ${findCurrentBorrower.lastName}`}
+      </Link>
+    );
+  };
+
   const membersNames = members.map((member) => (
     <option className="one-borrower" key={member._id} value={member._id}>
       {`${member.firstName} ${member.lastName}`}
@@ -96,8 +110,15 @@ const BookDetails = () => {
               <div>{book.available ? " ✔ Available" : "✘ Not available"}</div>
             </div>
 
+            {!book.available && (
+              <div className="borrowed-by-field">
+                <div className="title-in-bold">Currently borrowed by: </div>
+                <div className="borrowers">{currentBorrower()}</div>
+              </div>
+            )}
+
             <div className="borrowed-by-field">
-              <div className="title-in-bold">Borrowed by: </div>
+              <div className="title-in-bold">Previously borrowed by: </div>
               <div className="borrowers">{borrowedBy}</div>
             </div>
 
